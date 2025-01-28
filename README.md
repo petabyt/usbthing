@@ -6,23 +6,25 @@ This is a general purpose layer for creating/emulating/spoofing USB devices. Dev
 - Game controllers
 - HID devices
 - Anything else that plugs into a USB port
-Can be emulated with this library.
+
+can be emulated with this library.
 
 ![canvas](canvas.png)
 
-All control/bulk/interrupt requests for a device (the implementation) will be routed to a backend.
+## Backends
+All control/bulk/interrupt requests for a device implementation will be routed to a backend.
 A backend will route the communication of a device to an interface where it can be useful.
 
 ### libusb-v1.0
 A fake .so/.dll drop-in replacement for libusb-v1.0 - this is easy to manage and is great for CI testing.
 ### vhci
-Creates a device on the kernel's virtual host interface - ideal for routing to VMs
+Creates a device on the kernel's virtual host interface which will be exposed to your computer as if it were physical controller. Ideal if you want to route devices to a VM.
 ### gadgetfs
-The linux kernel interface over DWC - used to expose a device over a physical OTG port. If you run usbthing on a raspberry pi, you can
-plug it into any computer to emulate USB devices. Maybe useful for pentesting.
+The linux kernel interface that can be used to expose a device over a physical OTG port. If you run usbthing on a raspberry pi, you can
+plug it into any computer to emulate USB devices. Probably useful for pentesting!
 
 ## Usage
-See usbthing.h for more info on how to use this. It's pretty short.
+See `usbthing.h` for more info on how to use this. It's pretty short.
 ```
 # Test VHCI backend:
 gcc dummy.c vhci.c device.c usbstring.c && ./a.out
