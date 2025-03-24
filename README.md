@@ -24,11 +24,10 @@ The linux kernel interface that can be used to expose a device over a physical O
 plug it into any computer to emulate USB devices. Probably useful for pentesting!
 
 ## Usage
-See `usbthing.h` for more info on how to use this. It's pretty short.
+See `usbthing.h` for more info on how to use this. It's pretty brief.
 ```
 # Test VHCI backend:
-gcc dummy.c vhci.c device.c usbstring.c && ./a.out
-./a.out
+gcc dummy.c vhci.c device.c usbstring.c && sudo ./a.out
 
 # Test libusb backend
 gcc -shared libusb.c dummy.c `pkg-config --libs --cflags libusb-1.0`
@@ -39,7 +38,7 @@ gcc -shared libusb.c dummy.c `pkg-config --libs --cflags libusb-1.0`
 - [x] Handlers for all common control requests
 - [x] VHCI
 - [x] libusb-v1.0
-- [ ] gadgetfs (currently WIP)
+- [ ] gadgetfs (Not finished yet)
 - [x] Bulk endpoints
 - [ ] Handle interrupt endpoint polling
 - [ ] Virtual hub (if possible)
